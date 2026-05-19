@@ -1,0 +1,35 @@
+use_default_settings: true
+
+general:
+  instance_name: "SearXNG"
+  debug: false
+
+search:
+  safe_search: 0
+  autocomplete: "google"
+  default_lang: ""
+  formats:
+    - html
+    - json
+
+server:
+  port: 8080
+  bind_address: "0.0.0.0"
+  secret_key: "change-this-to-a-random-secret-key"
+  limiter: false
+  image_proxy: true
+  method: "GET"
+
+ui:
+  static_use_hash: true
+
+# engines example (uncomment to customize)
+# engines:
+#   - name: google
+#     engine: google
+#     shortcut: g
+#     enabled: true
+#   - name: wikimedia
+#     engine: wikimedia
+#     shortcut: wm
+#     enabled: true

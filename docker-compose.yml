@@ -1,0 +1,29 @@
+services:
+  searxng:
+    image: searxng/searxng:latest
+    container_name: searxng
+    restart: unless-stopped
+    ports:
+      - "17080:8080"
+    volumes:
+      - ./settings.yml:/etc/searxng/settings.yml:ro
+    environment:
+      - SEARXNG_BASE_URL=http://localhost:8080/
+    # healthcheck (optional)
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/healthz || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  browserless:
+    image: ghcr.io/browserless/chromium:latest
+    container_name: browserless
+    restart: unless-stopped
+    ports:
+      - "17081:3000"
+    environment:
+      - MAX_CONCURRENT_SESSIONS=5
+      - HEARTBEAT_TIMEOUT=60000
+      - LOG_LEVEL=info
+      - HEALTH_CHECK=true

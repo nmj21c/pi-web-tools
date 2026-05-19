@@ -1,0 +1,40 @@
+{
+  "name": "@jonghyun/pi-web-tools",
+  "version": "1.0.0",
+  "description": "Pi extension providing web search, page scraping, screenshot, and content extraction tools with auto-managed Docker services.",
+  "keywords": [
+    "pi-package",
+    "pi-extension",
+    "web-search",
+    "web-scraping",
+    "screenshot",
+    "searxng",
+    "browserless"
+  ],
+  "type": "module",
+  "main": "",
+  "files": [
+    "extensions/",
+    "docker-compose.yml",
+    "settings.yml",
+    "README.md"
+  ],
+  "pi": {
+    "extensions": [
+      "./extensions"
+    ]
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*",
+    "typebox": "*"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nmj21c/pi-web-tools.git"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  }
+}
