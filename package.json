@@ -1,6 +1,6 @@
 {
   "name": "@jonghyun/pi-web-tools",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Pi extension providing web search, page scraping, screenshot, and content extraction tools with auto-managed Docker services.",
   "keywords": [
     "pi-package",
