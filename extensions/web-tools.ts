@@ -77,9 +77,31 @@ function findDockerComposeFile(cwd: string): string | null {
 }
 
 /**
+ * Check if a Docker container is running by name.
+ */
+async function isContainerRunning(pi: ExtensionAPI, name: string): Promise<boolean> {
+  try {
+    const result = await pi.exec("docker", ["inspect", "--format", "{{.State.Running}}", name], { timeout: 10000 });
+    return result.code === 0 && result.stdout.trim() === "true";
+  } catch {
+    return false;
+  }
+}
+
+/**
  * Start Docker Compose services from the project directory.
+ * Skips if the named containers are already running.
  */
 async function startDockerServices(pi: ExtensionAPI, projectDir: string): Promise<void> {
+  // Check if containers are already running
+  const searxngRunning = await isContainerRunning(pi, "searxng");
+  const browserlessRunning = await isContainerRunning(pi, "browserless");
+
+  if (searxngRunning && browserlessRunning) {
+    // Already running, skip docker compose up
+    return;
+  }
+
   const result = await pi.exec(
     "docker",
     ["compose", "-f", path.join(projectDir, DOCKER_COMPOSE_FILE), "up", "-d"],

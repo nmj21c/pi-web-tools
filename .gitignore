@@ -1,0 +1,10 @@
+# Pi local runtime (not part of the package)
+.pi/
+
+# Vim swap files
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
